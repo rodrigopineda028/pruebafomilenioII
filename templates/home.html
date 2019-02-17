@@ -1,0 +1,55 @@
+<head>
+	<title>Cat&aacute;logo de Normativas</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-primary">
+	<!-- <nav class="navbar navbar-inverse"> -->
+		<strong class="navbar-brand">Cat&aacute;logo de Normativas</strong>
+	</nav>	
+	<div style="margin:10; padding:10">
+		<form method='GET' action='.'>
+			<div class="form-group row">
+				<div class="col-sm-1">
+					<label for="searNormativaInput">Nombre:</label>
+				</div>
+				<div class="col-sm-3">
+		    		<input type="text" class="form-control" id="searNormativaInput" placeholder="Dejar vacio para consultar todas." name='nombre'>
+		    	</div>
+		    	<div class="col-sm-1">
+		    		<button type="submit" class="btn btn-success">Filtrar</button>
+		    	</div>
+	    	</div> 	
+		</form>
+
+		<br/>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+				    <tr class="bg-success">
+				    	<th scope="col">No.</th>
+				      	<th scope="col">Nombre</th>
+				      	<th scope="col">Tipo</th>
+				      	<th scope="col">Fecha Aprobaci&oacute;n</th>
+				      	<th scope="col">Fecha Publicaci&oacute;n</th>
+				      	<th scope="col">Normativa Generadora</th>
+				    </tr>
+			  	</thead>
+			  	<tbody>
+			  		{% for norm in items %}
+				    <tr>	
+				    	<td>{{ forloop.counter }}</td>	      
+				      	<td>{{ norm.nombre }}</td>
+				      	<td>{{ norm.tipo_normativa }}</td>
+				      	<td>{% if norm.fecha_aprobacion != None and norm.fecha_aprobacion != '' %} {{ norm.fecha_aprobacion }} {% else %} - {% endif %}</td>
+				      	<td>{% if norm.fecha_publicacion != None and norm.fecha_publicacion != '' %} {{ norm.fecha_publicacion }} {% else %} - {% endif %}</td>
+				      	<td>{% if norm.normativa_gen != None and norm.normativa_gen != '' %} {{ norm.normativa_gen }} {% else %} - {% endif %}</td>
+				    </tr>
+				    {% endfor %}
+			  	</tbody>
+			</table>
+		</div>
+	</div>
+</body>
